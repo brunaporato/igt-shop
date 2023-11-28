@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/font": "^14.0.3",
+    "@stitches/react": "^1.2.8",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18"
