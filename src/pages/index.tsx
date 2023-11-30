@@ -3,15 +3,9 @@ import Image from 'next/image'
 
 import { useKeenSlider } from 'keen-slider/react'
 
-
-import camiseta1 from '@/assets/Type6.png'
-import camiseta2 from '@/assets/Type7.png'
-import camiseta3 from '@/assets/Type8.png'
-import camiseta4 from '@/assets/Type9.png'
-
 import 'keen-slider/keen-slider.min.css'
 import { stripe } from "@/lib/stripe";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Stripe from "stripe";
 
 interface HomeProps {
@@ -55,7 +49,7 @@ export default function Home({ products }: HomeProps) {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
     expand: ['data.default_price']
   })
@@ -67,7 +61,7 @@ export const getServerSideProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: price.unit_amount,
+      price: price.unit_amount! / 100,
     }
   })
 
@@ -75,7 +69,9 @@ export const getServerSideProps = async () => {
   return {
     props : {
       products
-    }
+    },
+    
+    revalidate: 60 * 60 * 2,
   }
 }
 
