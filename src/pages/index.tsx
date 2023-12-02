@@ -9,6 +9,8 @@ import { GetStaticProps } from "next";
 import Stripe from "stripe";
 import Link from "next/link";
 import Head from "next/head";
+import { CartButton } from "@/styles/pages/app";
+import { PiHandbagBold } from "react-icons/pi";
 
 interface HomeProps {
   products: {
@@ -46,8 +48,13 @@ export default function Home({ products }: HomeProps) {
                 alt=""
               />
               <footer>
-                <strong>{product.name}</strong>
-                <span>{product.price}</span>
+                <div className="info">
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </div>
+                <CartButton position='footer'>
+                  <PiHandbagBold size={32} />
+                </CartButton>
               </footer>
             </Product>
           </Link>

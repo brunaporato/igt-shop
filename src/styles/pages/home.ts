@@ -2,7 +2,6 @@ import { styled } from "..";
 
 export const HomeContainer = styled('main', {
   display: 'flex',
-  // gap: '3rem',
   width: '100%',
   maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
@@ -31,7 +30,7 @@ export const Product = styled('div', {
     bottom: '0.25rem',
     left: '0.25rem',
     right: '0.25rem',
-    padding: '2rem',
+    padding: '1.25rem',
 
     borderRadius: 6,
     
@@ -55,6 +54,14 @@ export const Product = styled('div', {
       fontWeight: 'bold',
       color: '$green300',
     },
+
+    '.info': {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.25rem',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+    }
   },
 
   '&:hover': {
