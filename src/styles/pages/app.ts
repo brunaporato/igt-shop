@@ -7,7 +7,7 @@ export const Container = styled('div', {
   minHeight: '100vh',
   justifyContent: 'center',
 
-  width: 'fit-content',
+  width: '100%',
 })
 
 export const Header = styled('header', {

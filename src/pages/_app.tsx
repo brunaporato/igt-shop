@@ -18,6 +18,15 @@ globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
   const [cartItems, setCartItems] = useState(0)
+  const [cartOpen, setCartOpen] = useState(false)
+
+  function handleOpenCart() {
+    setCartOpen(true)
+  }
+
+  function handleCloseCart() {
+    setCartOpen(false)
+  }
 
   return (
     <Container className={roboto.className}>
@@ -28,7 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
             alt=''
           />
         </Link>
-        <CartButton position='header'>
+        <CartButton position='header' onClick={handleOpenCart}>
           <PiHandbagBold size={24} />
           {cartItems != 0 &&
             <span>
@@ -37,51 +46,54 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         </CartButton>
       </Header>
-      <CartContainer>
-        <button className='close'>
-          <PiXBold size={24} />
-        </button>
-        <h1>Sacola de compras</h1>
-
-        <ItemsContainer>
-          <ItemCart>
-            <ImgContainerCart></ImgContainerCart>
-            <div className="details">
-              <span>Camiseta X</span>
-              <strong>R$ 79,90</strong>
-              <Link href=''>
-                Remover
-              </Link>
-            </div>
-          </ItemCart>
-          <ItemCart>
-            <ImgContainerCart></ImgContainerCart>
-            <div className="details">
-              <span>Camiseta X</span>
-              <strong>R$ 79,90</strong>
-              <Link href=''>
-                Remover
-              </Link>
-            </div>
-          </ItemCart>
-        </ItemsContainer>
-
-        <CartBottom>
-          <div className='quantity'>
-            <span>Quantidade</span>
-            <span>3 itens</span>
-          </div>
-          <div className='price'>
-            <span>Valor total</span>
-            <span>R$ 270,00</span>
-          </div>
-        </CartBottom>
-
-        <ButtonFinal>
-          Finalizar compra
-        </ButtonFinal>
-      </CartContainer>
       <Component {...pageProps} />
+      {
+        cartOpen === true &&
+          <CartContainer>
+            <button className='close' onClick={handleCloseCart}>
+              <PiXBold size={24} />
+            </button>
+            <h1>Sacola de compras</h1>
+
+            <ItemsContainer>
+              <ItemCart>
+                <ImgContainerCart></ImgContainerCart>
+                <div className="details">
+                  <span>Camiseta X</span>
+                  <strong>R$ 79,90</strong>
+                  <Link href=''>
+                    Remover
+                  </Link>
+                </div>
+              </ItemCart>
+              <ItemCart>
+                <ImgContainerCart></ImgContainerCart>
+                <div className="details">
+                  <span>Camiseta X</span>
+                  <strong>R$ 79,90</strong>
+                  <Link href=''>
+                    Remover
+                  </Link>
+                </div>
+              </ItemCart>
+            </ItemsContainer>
+
+            <CartBottom>
+              <div className='quantity'>
+                <span>Quantidade</span>
+                <span>3 itens</span>
+              </div>
+              <div className='price'>
+                <span>Valor total</span>
+                <span>R$ 270,00</span>
+              </div>
+            </CartBottom>
+
+            <ButtonFinal>
+              Finalizar compra
+            </ButtonFinal>
+          </CartContainer>
+      }
     </Container>
   )
 }
