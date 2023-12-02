@@ -6,6 +6,8 @@ export const Container = styled('div', {
   alignItems: 'flex-start',
   minHeight: '100vh',
   justifyContent: 'center',
+
+  width: 'fit-content',
 })
 
 export const Header = styled('header', {
@@ -68,4 +70,151 @@ export const CartButton = styled('button', {
     right: '-0.45rem',
     top: '-0.45rem',
   }
+})
+
+export const CartContainer = styled('div', {
+  backgroundColor: '$gray800',
+  height: '100vh',
+  width: '30rem',
+  position: 'absolute',
+  right: '0',
+
+  display: 'flex',
+  flexDirection: 'column',
+
+  padding: '1.5rem 1.5rem 3rem 3rem',
+
+  boxShadow: '-4px 0px 30px 0px rgba(0, 0, 0, 0.80)',
+
+  '.close': {
+    border: 'none',
+    background: 'transparent',
+    color: '$gray300',
+    cursor: 'pointer',
+
+    textAlign: 'end',
+    marginBottom: '1.5rem',
+  },
+
+  h1: {
+    fontSize: '$lg',
+    lineHeight: 1.6,
+  },
+
+  button: {
+    marginTop: 0,
+  }
+})
+
+export const ButtonFinal = styled('button', {
+  marginTop: 'auto',
+    backgroundColor: '$green500',
+    border: 0,
+    color: '$white',
+    borderRadius: 8,
+    padding: '1.25rem',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    fontSize: '$md',
+
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed',
+    },
+
+    '&:not(:disabled):hover': {
+      backgroundColor: '$green300',
+      transition: 'all 0.2s'
+    }
+})
+
+export const ItemsContainer = styled('section', {
+  padding: '2rem 1.5rem 0 0',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
+
+  height: 'fit-content',
+})
+
+export const ItemCart = styled('div', {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+
+  gap: '1.25rem',
+  alignSelf: 'stretch',
+
+  '.details': {
+    display: 'flex',
+    flexDirection: 'column',
+    whiteSpace: 'nowrap',
+
+    gap: '0.5rem',
+
+
+    span: {
+      fontSize: '$md',
+      color: '$gray300',
+    },
+
+    strong: {
+      fontSize: '$md',
+      lineHeight: 1.6,
+    },
+
+    a: {
+      color: '$green500',
+      fontWeight: 700,
+      textDecoration: 'none',
+
+      '&:hover': {
+        color: '$green300',
+      },
+    },
+  },
+})
+
+export const ImgContainerCart = styled('div', {
+  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
+  height: '6rem',
+  width: '6rem',
+  flexShrink: 0,
+  borderRadius: 6,
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  img: {
+    objectFit: 'cover',
+  },
+})
+
+export const CartBottom = styled('section', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.5rem',
+
+  lineHeight: 1.6,
+
+  margin: 'auto 0 3rem',
+
+  div: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  '.price': {
+    fontWeight: 700,
+    fontSize: '$md',
+
+    span: {
+      '& + span': {
+        fontSize: '$xl'
+      }
+    }
+  },
+
 })

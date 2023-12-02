@@ -1,4 +1,5 @@
 import { stripe } from "@/lib/stripe"
+import { ButtonFinal } from "@/styles/pages/app"
 import { ImageContainer, ProductContainer, ProductDetails } from "@/styles/pages/product"
 import axios from "axios"
 import { GetStaticPaths, GetStaticProps } from "next"
@@ -60,9 +61,9 @@ export default function Product({ product }: ProductProps) {
 
         <p>{product.description}</p>
 
-        <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSession}>
-          Comprar agora
-        </button>
+        <ButtonFinal onClick={handleBuyProduct} disabled={isCreatingCheckoutSession}>
+          Colocar na sacola
+        </ButtonFinal>
       </ProductDetails>
     </ProductContainer>
     </>
