@@ -26,7 +26,18 @@ export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter();
 
   if(isFallback) {
-    return <p>loading...</p> // TODO: skeleton page
+    return (
+      <>
+        <ProductContainer>
+          <ImageContainer type='skeleton' />
+          <ProductDetails>
+            <ProductDetails type='skeletonName' />
+            <ProductDetails type='skeletonDescription' />
+            <ButtonFinal type='skeleton' disabled />
+          </ProductDetails>
+        </ProductContainer>
+      </>
+    )
   }
 
   async function handleBuyProduct() {
@@ -42,7 +53,7 @@ export default function Product({ product }: ProductProps) {
       window.location.href = checkoutUrl
     } catch (err) {
       setIsCreatingCheckoutSession(false)
-      alert('Falha ao direcionar ao checkout') // Conectar com datadog/century para entender o erro que aconteceu
+      alert('Falha ao direcionar ao checkout') // Ideal: Conectar com datadog/century para entender o erro que aconteceu
     }
   }
 

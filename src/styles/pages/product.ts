@@ -24,6 +24,15 @@ export const ImageContainer = styled('div', {
   img: {
     objectFit: 'cover',
   },
+
+  variants: {
+    type: {
+      skeleton: {
+        width: 576,
+        background: '$gray800',
+      } 
+    }
+  }
 })
 
 export const ProductDetails = styled('div', {
@@ -50,15 +59,15 @@ export const ProductDetails = styled('div', {
   },
 
   button: {
-    marginTop: 'auto',
-    backgroundColor: '$green500',
-    border: 0,
-    color: '$white',
-    borderRadius: 8,
-    padding: '1.25rem',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    fontSize: '$md',
+    // marginTop: 'auto',
+    // backgroundColor: '$green500',
+    // border: 0,
+    // color: '$white',
+    // borderRadius: 8,
+    // padding: '1.25rem',
+    // cursor: 'pointer',
+    // fontWeight: 'bold',
+    // fontSize: '$md',
 
     '&:disabled': {
       opacity: 0.6,
@@ -68,6 +77,24 @@ export const ProductDetails = styled('div', {
     '&:not(:disabled):hover': {
       backgroundColor: '$green300',
       transition: 'all 0.2s'
+    }
+  },
+
+  variants: {
+    type: {
+      skeletonName: {
+        background: '$gray800',
+        height: '3rem',
+        borderRadius: 6,
+        marginBottom: '1rem',
+      },
+
+      skeletonDescription: {
+        background: '$gray800',
+        height: '4rem',
+        width: '50%',
+        borderRadius: 6,
+      }
     }
   }
 })

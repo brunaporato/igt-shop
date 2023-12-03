@@ -125,6 +125,15 @@ export const ButtonFinal = styled('button', {
     '&:not(:disabled):hover': {
       backgroundColor: '$green300',
       transition: 'all 0.2s'
+    },
+
+    variants: {
+      type: {
+        skeleton: {
+          backgroundColor: '$gray800',
+          height: '4.5rem',
+        }
+      }
     }
 })
 
