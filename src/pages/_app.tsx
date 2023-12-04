@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { PiHandbagBold, PiXBold } from 'react-icons/pi'
 import { ImgContainer } from '@/styles/pages/success'
+import CartProvider from '@/context/CartContext'
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -29,71 +30,73 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <Container className={roboto.className}>
-      <Header>
-        <Link href="/">
-          <Image
-            src={logoImg}
-            alt=''
-          />
-        </Link>
-        <CartButton position='header' onClick={handleOpenCart}>
-          <PiHandbagBold size={24} />
-          {cartItems != 0 &&
-            <span>
-              {cartItems}
-            </span>
-          }
-        </CartButton>
-      </Header>
-      <Component {...pageProps} />
-      {
-        cartOpen === true &&
-          <CartContainer>
-            <button className='close' onClick={handleCloseCart}>
-              <PiXBold size={24} />
-            </button>
-            <h1>Sacola de compras</h1>
+    <CartProvider>
+      <Container className={roboto.className}>
+        <Header>
+          <Link href="/">
+            <Image
+              src={logoImg}
+              alt=''
+            />
+          </Link>
+          <CartButton position='header' onClick={handleOpenCart}>
+            <PiHandbagBold size={24} />
+            {cartItems != 0 &&
+              <span>
+                {cartItems}
+              </span>
+            }
+          </CartButton>
+        </Header>
+        <Component {...pageProps} />
+        {
+          cartOpen === true &&
+            <CartContainer>
+              <button className='close' onClick={handleCloseCart}>
+                <PiXBold size={24} />
+              </button>
+              <h1>Sacola de compras</h1>
 
-            <ItemsContainer>
-              <ItemCart>
-                <ImgContainerCart></ImgContainerCart>
-                <div className="details">
-                  <span>Camiseta X</span>
-                  <strong>R$ 79,90</strong>
-                  <Link href=''>
-                    Remover
-                  </Link>
+              <ItemsContainer>
+                <ItemCart>
+                  <ImgContainerCart></ImgContainerCart>
+                  <div className="details">
+                    <span>Camiseta X</span>
+                    <strong>R$ 79,90</strong>
+                    <Link href=''>
+                      Remover
+                    </Link>
+                  </div>
+                </ItemCart>
+                <ItemCart>
+                  <ImgContainerCart></ImgContainerCart>
+                  <div className="details">
+                    <span>Camiseta X</span>
+                    <strong>R$ 79,90</strong>
+                    <Link href=''>
+                      Remover
+                    </Link>
+                  </div>
+                </ItemCart>
+              </ItemsContainer>
+
+              <CartBottom>
+                <div className='quantity'>
+                  <span>Quantidade</span>
+                  <span>3 itens</span>
                 </div>
-              </ItemCart>
-              <ItemCart>
-                <ImgContainerCart></ImgContainerCart>
-                <div className="details">
-                  <span>Camiseta X</span>
-                  <strong>R$ 79,90</strong>
-                  <Link href=''>
-                    Remover
-                  </Link>
+                <div className='price'>
+                  <span>Valor total</span>
+                  <span>R$ 270,00</span>
                 </div>
-              </ItemCart>
-            </ItemsContainer>
+              </CartBottom>
 
-            <CartBottom>
-              <div className='quantity'>
-                <span>Quantidade</span>
-                <span>3 itens</span>
-              </div>
-              <div className='price'>
-                <span>Valor total</span>
-                <span>R$ 270,00</span>
-              </div>
-            </CartBottom>
-
-            <ButtonFinal>
-              Finalizar compra
-            </ButtonFinal>
-          </CartContainer>
-      }
-    </Container>
+              <ButtonFinal>
+                Finalizar compra
+              </ButtonFinal>
+            </CartContainer>
+        }
+      </Container>
+    </CartProvider>
   )
 }

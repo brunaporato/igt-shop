@@ -1,3 +1,4 @@
+import { CartContext } from "@/context/CartContext"
 import { stripe } from "@/lib/stripe"
 import { ButtonFinal } from "@/styles/pages/app"
 import { ImageContainer, ProductContainer, ProductDetails } from "@/styles/pages/product"
@@ -6,7 +7,7 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Stripe from "stripe"
 
 interface ProductProps {
@@ -22,6 +23,8 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
+
+  const { addItemToCart } = useContext(CartContext)
 
   const { isFallback } = useRouter();
 
@@ -57,6 +60,10 @@ export default function Product({ product }: ProductProps) {
     }
   }
 
+  function handleAddProductToCart() {
+    addItemToCart(product)
+  }
+
   return (
     <>
     <Head>
@@ -72,7 +79,7 @@ export default function Product({ product }: ProductProps) {
 
         <p>{product.description}</p>
 
-        <ButtonFinal onClick={handleBuyProduct} disabled={isCreatingCheckoutSession}>
+        <ButtonFinal onClick={handleAddProductToCart} disabled={isCreatingCheckoutSession}>
           Colocar na sacola
         </ButtonFinal>
       </ProductDetails>
