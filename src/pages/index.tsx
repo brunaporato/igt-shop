@@ -13,15 +13,9 @@ import { CartButton } from "@/styles/pages/app";
 import { PiHandbagBold } from "react-icons/pi";
 import { useContext } from "react";
 import { CartContext, ProductType } from "@/context/CartContext";
-import { ProductProps } from "./product/[id]";
 
 interface HomeProps {
   products: ProductType[]
-}
-
-interface HandleOnClickProps {
-  e: MouseEvent
-  product: ProductType
 }
 
 
@@ -33,9 +27,7 @@ export default function Home({ products }: HomeProps) {
     }
   })
 
-  const { addItemToCart, itemsCart } = useContext(CartContext)
-
-  console.log(itemsCart)
+  const { addItemToCart } = useContext(CartContext)
 
   function handleAddItemToCart(e: React.MouseEvent<HTMLButtonElement>, product: ProductType) {
     e.preventDefault()

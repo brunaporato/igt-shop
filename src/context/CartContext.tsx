@@ -23,6 +23,7 @@ export const CartContext = createContext({} as CartContextProps)
 export default function CartProvider({ children }: CartProviderProps) {
   const [itemsCart, setItemsCart] = useState<ProductType[]>([])
 
+
   function addItemToCart(product: ProductType) {
     const newCart = [...itemsCart]
     newCart.push(product)

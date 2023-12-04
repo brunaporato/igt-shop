@@ -5,10 +5,10 @@ import logoImg from '@/assets/logo.svg'
 import { ButtonFinal, CartBottom, CartButton, CartContainer, Container, Header, ImgContainerCart, ItemCart, ItemsContainer } from '@/styles/pages/app'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PiHandbagBold, PiXBold } from 'react-icons/pi'
 import { ImgContainer } from '@/styles/pages/success'
-import CartProvider from '@/context/CartContext'
+import CartProvider, { CartContext, ProductType } from '@/context/CartContext'
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -18,8 +18,11 @@ const roboto = Roboto({
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [cartItems, setCartItems] = useState(0)
   const [cartOpen, setCartOpen] = useState(false)
+  const [quantityItems, setQuantityItems] = useState<number>(0)
+
+  const { itemsCart } = useContext(CartContext)
+  console.log(itemsCart) // retornando undefined aqui, mas quando nos outros componentes retorna certo
 
   function handleOpenCart() {
     setCartOpen(true)
@@ -28,6 +31,12 @@ export default function App({ Component, pageProps }: AppProps) {
   function handleCloseCart() {
     setCartOpen(false)
   }
+
+  useEffect(() => {
+    const quantity = itemsCart?.length ?? 0;
+    setQuantityItems(quantity)
+
+  }, [itemsCart]);
 
   return (
     <CartProvider>
@@ -41,9 +50,9 @@ export default function App({ Component, pageProps }: AppProps) {
           </Link>
           <CartButton position='header' onClick={handleOpenCart}>
             <PiHandbagBold size={24} />
-            {cartItems != 0 &&
+            {quantityItems != 0 &&
               <span>
-                {cartItems}
+                {quantityItems}
               </span>
             }
           </CartButton>
