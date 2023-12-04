@@ -11,14 +11,17 @@ import Link from "next/link";
 import Head from "next/head";
 import { CartButton } from "@/styles/pages/app";
 import { PiHandbagBold } from "react-icons/pi";
+import { useContext } from "react";
+import { CartContext, ProductType } from "@/context/CartContext";
+import { ProductProps } from "./product/[id]";
 
 interface HomeProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-  }[]
+  products: ProductType[]
+}
+
+interface HandleOnClickProps {
+  e: MouseEvent
+  product: ProductType
 }
 
 
@@ -29,6 +32,15 @@ export default function Home({ products }: HomeProps) {
       spacing: 32,
     }
   })
+
+  const { addItemToCart, itemsCart } = useContext(CartContext)
+
+  console.log(itemsCart)
+
+  function handleAddItemToCart(e: React.MouseEvent<HTMLButtonElement>, product: ProductType) {
+    e.preventDefault()
+    addItemToCart(product)
+  }
 
   return (
     <>
@@ -52,7 +64,10 @@ export default function Home({ products }: HomeProps) {
                   <strong>{product.name}</strong>
                   <span>{product.price}</span>
                 </div>
-                <CartButton position='footer'>
+                <CartButton
+                  position='footer'
+                  onClick={(e) => handleAddItemToCart(e, product)}
+                >
                   <PiHandbagBold size={32} />
                 </CartButton>
               </footer>
