@@ -10,7 +10,7 @@ export const Container = styled('div', {
   width: '100%',
 })
 
-export const Header = styled('header', {
+export const HeaderContainer = styled('header', {
   padding: '2rem 0',
   width: '100%',
   maxWidth: 1100,
@@ -78,6 +78,7 @@ export const CartContainer = styled('div', {
   width: '30rem',
   position: 'absolute',
   right: '0',
+  zIndex: 2,
 
   display: 'flex',
   flexDirection: 'column',
