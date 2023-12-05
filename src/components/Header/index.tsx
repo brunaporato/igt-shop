@@ -6,11 +6,13 @@ import logoImg from '@/assets/logo.svg';
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/context/CartContext";
 import { CartBottom, CartButton, CartContainer, ImgContainerCart, ItemCart, ItemsContainer, RemoveButton } from "./style";
+import axios from "axios";
 
 
 export function Header() {
   const [cartOpen, setCartOpen] = useState(false)
   const [quantityItems, setQuantityItems] = useState<number>(0)
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
 
   const { itemsCart, totalPriceFormatted, removeItemFromCart } = useContext(CartContext)
 
@@ -20,6 +22,29 @@ export function Header() {
 
   function handleCloseCart() {
     setCartOpen(false)
+  }
+  
+  async function handleBuyProduct() {
+    try {
+      setIsCreatingCheckoutSession(true)
+
+
+      const response = await axios.post('/api/checkout', {
+        lineItems: itemsCart.map(item => {
+          return {
+            price: item.defaultPriceId,
+            quantity: 1
+          }
+        })
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href = checkoutUrl
+    } catch (err) {
+      setIsCreatingCheckoutSession(false)
+      alert('Falha ao direcionar ao checkout') // Ideal: Conectar com datadog/century para entender o erro que aconteceu
+    }
   }
 
   useEffect(() => {
@@ -91,7 +116,9 @@ export function Header() {
             </div>
           </CartBottom>
 
-          <ButtonFinal>
+          <ButtonFinal
+            onClick={handleBuyProduct}
+          >
             Finalizar compra
           </ButtonFinal>
         </CartContainer>
