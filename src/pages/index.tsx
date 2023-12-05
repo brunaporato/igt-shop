@@ -9,10 +9,10 @@ import { GetStaticProps } from "next";
 import Stripe from "stripe";
 import Link from "next/link";
 import Head from "next/head";
-import { CartButton } from "@/styles/pages/app";
 import { PiHandbagBold } from "react-icons/pi";
 import { useContext } from "react";
 import { CartContext, ProductType } from "@/context/CartContext";
+import { CartButton } from "@/components/Header/style";
 
 interface HomeProps {
   products: ProductType[]
