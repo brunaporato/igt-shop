@@ -34,24 +34,36 @@ export const SuccessContainer = styled('main', {
     '&:hover': {
       color: '$green300'
     }
+  },
+
+  '.products': {
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
   }
 })
 
 export const ImgContainer = styled('div', {
-  width: '100%',
-  maxWidth: 130,
-  height: 145,
+  width: 140,
+  height: 140,
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
+  borderRadius: '50%',
   padding: '0.25rem',
 
-  marginTop: '4rem',
+  margin: '4rem 0 0 -2.5rem',
 
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
 
+  boxShadow: '0px 0px 60px 0px rgba(0, 0, 0, 0.80)',
+
   img: {
     objectFit: 'cover',
+  },
+
+  '&:first-child': {
+    marginLeft: 0
   }
 })

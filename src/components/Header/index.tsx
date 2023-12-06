@@ -118,6 +118,7 @@ export function Header() {
 
           <ButtonFinal
             onClick={handleBuyProduct}
+            disabled={isCreatingCheckoutSession}
           >
             Finalizar compra
           </ButtonFinal>
