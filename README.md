@@ -1,11 +1,7 @@
 # Ignite Shop
+This project is built using Next.js, integrating the Stripe API for seamless payment processing. The UI is styled with Stitches, and various libraries such as Axios, Keen Slider, React Icons, and TypeScript have been employed to enhance the overall functionality and user experience.
 
-<video width="auto" height="auto" controls>
-  <source src='./src/assets/videos/' type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-Welcome to Ignite Shop, an e-commerce platform tailored for developers! This project is built using Next.js, integrating the Stripe API for seamless payment processing. The UI is styled with Stitches, and various libraries such as Axios, Keen Slider, React Icons, and TypeScript have been employed to enhance the overall functionality and user experience.
+![Demo: Ignite Shop Application in action](./src/assets/Home-_-Igt-Shop-Google-Chrome-2023-12-05-21-54-14.gif)
 
 ## Features
 - **Next.js**: A React framework for building efficient and scalable web applications.
